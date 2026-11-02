@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mockroute examples">
+  <trk>
+    <name>示例 GPS 轨迹（可直接当路径用）</name>
+    <trkseg>
+      <trkpt lat="39.90750" lon="116.39100"><ele>45.0</ele></trkpt>
+      <trkpt lat="39.90782" lon="116.39128"><ele>45.2</ele></trkpt>
+      <trkpt lat="39.90808" lon="116.39170"><ele>45.4</ele></trkpt>
+      <trkpt lat="39.90852" lon="116.39240"><ele>45.6</ele></trkpt>
+      <trkpt lat="39.90896" lon="116.39312"><ele>45.8</ele></trkpt>
+      <trkpt lat="39.90940" lon="116.39385"><ele>46.0</ele></trkpt>
+      <trkpt lat="39.91020" lon="116.39500"><ele>46.2</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

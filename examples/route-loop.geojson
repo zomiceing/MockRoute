@@ -1,0 +1,17 @@
+{
+  "type": "Feature",
+  "properties": {
+    "name": "示例环路：一个 300m 见方的闭环，适合测 loop / pingpong 模式",
+    "note": "坐标是 WGS-84。用 --provider file --file examples/route-loop.geojson"
+  },
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [116.39100, 39.90600],
+      [116.39450, 39.90600],
+      [116.39450, 39.90870],
+      [116.39100, 39.90870],
+      [116.39100, 39.90600]
+    ]
+  }
+}

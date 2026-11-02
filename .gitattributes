@@ -1,0 +1,49 @@
+# =============================================================================
+#  .gitattributes — 统一换行符与二进制判定
+#
+#  为什么需要：
+#    不同系统换行符不同（Windows=CRLF，Linux/macOS=LF）。不统一的话，
+#    别人 clone 下来会看到「整个文件都改了」的 diff，或者 .cmd 脚本直接跑不了。
+#    这里按文件类型固定，git 就不会来回改。
+# =============================================================================
+
+# 默认：让 git 自动判断文本文件，并在仓库内统一存 LF
+* text=auto
+
+# ---- Windows 脚本必须在检出时是 CRLF，否则 cmd 可能出错 ----
+*.cmd  text eol=crlf
+*.bat  text eol=crlf
+*.ps1  text eol=crlf
+
+# ---- Shell 脚本 / Unix 工具必须是 LF ----
+*.sh   text eol=lf
+
+# ---- 源码与文档统一用 LF（跨平台一致） ----
+*.py    text eol=lf
+*.kt    text eol=lf
+*.xml   text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.txt   text eol=lf
+*.gpx   text eol=lf
+*.geojson text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+
+# ---- 二进制：不要做换行符转换，也不要显示文本 diff ----
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.apk   binary
+*.aab   binary
+*.jar   binary
+*.keystore binary
+*.jks   binary
+
+# ---- 让 GitHub 统计语言时不要误判 ----
+*.cmd      linguist-language=Batchfile
+*.ps1      linguist-language=PowerShell

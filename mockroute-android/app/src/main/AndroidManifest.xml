@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 读取 PC 推送到 /sdcard/mockroute/ 的轨迹文件（Android 12 及以下需要） -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 前台服务与常驻通知。POST_NOTIFICATIONS 仅在 targetSdk 33+ 下需要运行时授予；
+         未授予时前台服务依然运行，只是通知不可见。 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 控制入口：PC 端用 adb shell am broadcast 调用。
+             exported=true 是为了让 shell(uid 2000) 能投递广播；
+             Android 12+ 要求显式声明 exported。 -->
+        <receiver
+            android:name=".ControlReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.mockroute.action.SET" />
+                <action android:name="com.mockroute.action.START" />
+                <action android:name="com.mockroute.action.START_ROUTE" />
+                <action android:name="com.mockroute.action.START_CIRCLE" />
+                <action android:name="com.mockroute.action.PAUSE" />
+                <action android:name="com.mockroute.action.RESUME" />
+                <action android:name="com.mockroute.action.STOP" />
+                <action android:name="com.mockroute.action.STATUS" />
+                <action android:name="com.mockroute.action.GOTO" />
+                <action android:name="com.mockroute.action.SPEED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 载体：真正的 mock 定位由这里持续写入 -->
+        <service
+            android:name=".MockLocationService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+    </application>
+</manifest>
